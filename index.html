@@ -1,3 +1,4 @@
+I'll create the customer requirements form without the dashboard section. The form will include all the requested sections for collecting customer information, service interests, and follow-up details.
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -51,6 +52,7 @@
         </div>
 
         <form id="customerForm">
+            <!-- ข้อมูลพื้นฐาน -->
             <div class="form-section mb-6">
                 <div class="section-header p-4">
                     <h2 class="text-xl font-semibold">ข้อมูลพื้นฐาน</h2>
@@ -85,16 +87,498 @@
                 </div>
             </div>
 
+            <!-- ส่วนที่ 1: ข้อมูลลูกค้า -->
+            <div class="form-section mb-6">
+                <div class="section-header p-4">
+                    <h2 class="text-xl font-semibold">ส่วนที่ 1: ข้อมูลลูกค้า</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">สถานะของลูกค้า</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="status1" name="customerStatus" value="เจ้าของบ้าน" class="mr-2" required>
+                                <label for="status1">เจ้าของบ้าน</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="status2" name="customerStatus" value="บริษัทรับเหมาช่าง" class="mr-2">
+                                <label for="status2">บริษัทรับเหมาช่าง</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="status3" name="customerStatus" value="อื่นๆ" class="mr-2">
+                                <label for="status3">อื่นๆ</label>
+                                <input type="text" id="otherStatus" class="ml-2 px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุ" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ช่วงอายุของลูกค้า</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="age1" name="customerAge" value="20-30 ปี" class="mr-2" required>
+                                <label for="age1">20 - 30 ปี</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="age2" name="customerAge" value="31-40 ปี" class="mr-2">
+                                <label for="age2">31 - 40 ปี</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="age3" name="customerAge" value="41-50 ปี" class="mr-2">
+                                <label for="age3">41 - 50 ปี</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="age4" name="customerAge" value="51 ปีขึ้นไป" class="mr-2">
+                                <label for="age4">51 ปีขึ้นไป</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ช่วงเวลาที่ลูกค้าเข้ามาใช้บริการ</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="time1" name="visitTime" value="08:00-10:00" class="mr-2" required>
+                                <label for="time1">08:00 - 10:00 น.</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="time2" name="visitTime" value="10:01-12:00" class="mr-2">
+                                <label for="time2">10:01 - 12:00 น.</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="time3" name="visitTime" value="12:01-13:00" class="mr-2">
+                                <label for="time3">12:01 - 13:00 น.</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="time4" name="visitTime" value="13:01-15:00" class="mr-2">
+                                <label for="time4">13:01 - 15:00 น.</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="time5" name="visitTime" value="15:01-18:00" class="mr-2">
+                                <label for="time5">15:01 - 18:00 น.</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="time6" name="visitTime" value="18:01-20:00" class="mr-2">
+                                <label for="time6">18:01 - 20:00 น.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ช่วงวันที่ลูกค้าเข้ามาใช้บริการ</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="day1" name="visitDay" value="วันเสาร์-อาทิตย์" class="mr-2" required>
+                                <label for="day1">วันเสาร์-อาทิตย์</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="day2" name="visitDay" value="วันจันทร์-ศุกร์" class="mr-2">
+                                <label for="day2">วันจันทร์-ศุกร์</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="day3" name="visitDay" value="วันหยุดนักขัตฤกษ์" class="mr-2">
+                                <label for="day3">วันหยุดนักขัตฤกษ์</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">สถานะของหน้างานปัจจุบัน</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus1" name="workStatus" value="อยู่ระหว่างออกแบบและวางแผน" class="mr-2" required>
+                                <label for="workStatus1">อยู่ระหว่างออกแบบและวางแผน</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus2" name="workStatus" value="อยู่ระหว่างทำฐานราก" class="mr-2">
+                                <label for="workStatus2">อยู่ระหว่างทำฐานราก</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus3" name="workStatus" value="อยู่อาศัยแล้ว" class="mr-2">
+                                <label for="workStatus3">อยู่อาศัยแล้ว</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus4" name="workStatus" value="อยู่ระหว่างหาผู้รับเหมา" class="mr-2">
+                                <label for="workStatus4">อยู่ระหว่างหาผู้รับเหมา</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus5" name="workStatus" value="อยู่ระหว่างทำโครงหลังคา" class="mr-2">
+                                <label for="workStatus5">อยู่ระหว่างทำโครงหลังคา</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="workStatus6" name="workStatus" value="อื่นๆ" class="mr-2">
+                                <label for="workStatus6">อื่นๆ</label>
+                                <input type="text" id="otherWorkStatus" class="ml-2 px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุ" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ประเภทบ้าน</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="houseType1" name="houseType" value="บ้านเดี่ยว" class="mr-2" required>
+                                <label for="houseType1">บ้านเดี่ยว</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="houseType2" name="houseType" value="บ้านทาวน์โฮมน์" class="mr-2">
+                                <label for="houseType2">บ้านทาวน์โฮมน์</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">จำนวนชั้นของบ้าน</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="floors1" name="houseFloors" value="1 ชั้น" class="mr-2" required>
+                                <label for="floors1">1 ชั้น</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="floors2" name="houseFloors" value="2 ชั้น" class="mr-2">
+                                <label for="floors2">2 ชั้น</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="floors3" name="houseFloors" value="3 ชั้นขึ้นไป" class="mr-2">
+                                <label for="floors3">3 ชั้นขึ้นไป</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2: บริการที่ลูกค้าสนใจ -->
+            <div class="form-section mb-6">
+                <div class="section-header p-4">
+                    <h2 class="text-xl font-semibold">ส่วนที่ 2: บริการที่ลูกค้าสนใจ</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">บริการงานที่ลูกค้าสนใจ (เลือกได้มากกว่า 1 ข้อ)</label>
+                        <div id="serviceContainer" class="space-y-3">
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service1" name="service" value="ฉนวนกันความร้อน" class="mr-2">
+                                <label for="service1" class="mr-2">ฉนวนกันความร้อน</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service2" name="service" value="รางน้ำฝน" class="mr-2">
+                                <label for="service2" class="mr-2">รางน้ำฝน</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="service3" name="service" value="กันสาด/โรงจอดรถ" class="mr-2">
+                                <label for="service3">กันสาด/โรงจอดรถ</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="service4" name="service" value="ซ่อมแซมหลังคารั่ว" class="mr-2">
+                                <label for="service4">ซ่อมแซมหลังคารั่ว</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="service5" name="service" value="ติดตั้งวัสดุมุงหลังคา" class="mr-2 roof-installation">
+                                <label for="service5">ติดตั้งวัสดุมุงหลังคา</label>
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service6" name="service" value="งานโครงสร้าง" class="mr-2">
+                                <label for="service6" class="mr-2">งานโครงสร้าง</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service7" name="service" value="ผนัง/พื้น/รั้ว/ระแนง" class="mr-2">
+                                <label for="service7" class="mr-2">ผนัง/พื้น/รั้ว/ระแนง</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service8" name="service" value="บล็อค/คอนกรีตปูพื้น" class="mr-2">
+                                <label for="service8" class="mr-2">บล็อค/คอนกรีตปูพื้น</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="checkbox" id="service9" name="service" value="งานอื่นๆ" class="mr-2">
+                                <label for="service9" class="mr-2">งานอื่นๆ</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุพร้อมยี่ห้อ">
+                            </div>
+                            <button type="button" id="addServiceBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                                + เพิ่มบริการ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2.1: สอบถามความต้องการของลูกค้า สำหรับงานหลังคาบ้านใหม่ -->
+            <div id="roofSection" class="form-section mb-6 hidden">
+                <div class="section-header p-4 bg-blue-700">
+                    <h2 class="text-xl font-semibold">สอบถามความต้องการของลูกค้า สำหรับงานหลังคาบ้านใหม่</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ลูกค้าสนใจรับบริการกับเราในแบบใด?</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="roofService1" name="roofServiceType" value="บริการโครงหลังคาพร้อมติดตั้ง(พร้อมประมาณการ)" class="mr-2">
+                                <label for="roofService1">บริการโครงหลังคาพร้อมติดตั้ง(พร้อมประมาณการ)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="roofService2" name="roofServiceType" value="บริการหลังคาพร้อมบริการติดตั้ง(ถอดแบบประมาณการ)" class="mr-2">
+                                <label for="roofService2">บริการหลังคาพร้อมบริการติดตั้ง(ถอดแบบประมาณการ)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="roofService3" name="roofServiceType" value="ซื้อสินค้าอย่างเดียว (พร้อมถอดแบบประมาณการ)" class="mr-2">
+                                <label for="roofService3">ซื้อสินค้าอย่างเดียว (พร้อมถอดแบบประมาณการ)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="roofService4" name="roofServiceType" value="ซื้อสินค้าอย่างเดียว (ไม่ถอดแบบประมาณการ)" class="mr-2">
+                                <label for="roofService4">ซื้อสินค้าอย่างเดียว (ไม่ถอดแบบประมาณการ)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ลูกค้าสนใจกระเบื้องหลังคาอะไร?</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="roofType1" name="roofType" value="หลังคา อีลิต้า (Elitar)" class="mr-2">
+                                <label for="roofType1">หลังคา อีลิต้า (Elitar)</label>
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofType2" name="roofType" value="หลังคา ดูร่า (Dura)" class="mr-2">
+                                <label for="roofType2" class="mr-2">หลังคา ดูร่า (Dura)</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="รุ่น">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofType3" name="roofType" value="หลังคา ตราเพชร" class="mr-2">
+                                <label for="roofType3" class="mr-2">หลังคา ตราเพชร</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="รุ่น">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofType4" name="roofType" value="อื่นๆ" class="mr-2">
+                                <label for="roofType4" class="mr-2">อื่นๆ</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ลูกค้าสนใจอุปกรณ์หลังคาอะไร?</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="roofAcc1" name="roofAccessories" value="หลังคา อีลิต้า (Elitar)" class="mr-2">
+                                <label for="roofAcc1">หลังคา อีลิต้า (Elitar)</label>
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofAcc2" name="roofAccessories" value="หลังคา ดูร่า (Dura)" class="mr-2">
+                                <label for="roofAcc2" class="mr-2">หลังคา ดูร่า (Dura)</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="รุ่น">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofAcc3" name="roofAccessories" value="หลังคา ตราเพชร" class="mr-2">
+                                <label for="roofAcc3" class="mr-2">หลังคา ตราเพชร</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="รุ่น">
+                            </div>
+                            <div class="flex items-center flex-wrap">
+                                <input type="radio" id="roofAcc4" name="roofAccessories" value="อื่นๆ" class="mr-2">
+                                <label for="roofAcc4" class="mr-2">อื่นๆ</label>
+                                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ลูกค้าเลือกใช้โครงหลังคาแบบใด?</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="roofStructure1" name="roofStructure" value="โครงสำเร็จรูป Truss SCG" class="mr-2">
+                                <label for="roofStructure1">โครงสำเร็จรูป Truss SCG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="roofStructure2" name="roofStructure" value="โครงสำเร็จรูปยี่ห้ออื่น" class="mr-2">
+                                <label for="roofStructure2">โครงสำเร็จรูปยี่ห้ออื่น</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="roofStructure3" name="roofStructure" value="โครงเหล็กดำ" class="mr-2">
+                                <label for="roofStructure3">โครงเหล็กดำ</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                        <h3 class="font-semibold text-yellow-800 mb-2">ข้อมูลสำคัญที่ต้องใช้เพื่อประกอบการถอดแบบและประมาณการราคาหลังคา</h3>
+                        <p class="text-yellow-700 mb-2">**ขอกับลูกค้าให้ส่งให้ทุกรายการ</p>
+                        <ol class="list-decimal pl-5 text-yellow-700 space-y-1">
+                            <li>แปลนแสดงรายละเอียดหลังคาทั้งหมด</li>
+                            <li>รูปตัด จำนวน 2 แผ่น / หลัง (รูปตัดตามยาว 1 แผ่น และ รูปตัดตามขวาง 1 แผ่น)</li>
+                            <li>รูปด้าน จำนวน 4 แผ่น / หลัง (รูปด้านหน้า1แผ่น, รูปด้านหลัง1แผ่น, รูปด้านขวา1แผ่น, รูปด้านซ้าย1แผ่น)</li>
+                            <li>แบบโครงสร้างคานหลังคา (กรณีใช้ TRUSS)</li>
+                        </ol>
+                        <p class="text-yellow-700 mt-2 text-sm">**ถ้าข้อมูลที่ระบุจากผู้ขอรับบริการ เห็นว่าเพียงพอต่อการปฎิบัติงานและผู้ประมาณการตรวจสอบแล้วสามารถทำงานได้</p>
+                        <p class="text-yellow-700 text-sm">**ข้อมูลและแบบที่ส่งมาคำนวณต้องมีความชัดเจน ตรงกับการปฎิบัติงาน เพื่อให้สอดคล้องกับความต้องการและการใช้งานจริง</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">งบประมาณที่ตั้งไว้</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="budget1" name="budget" value="ต่ำกว่า 50,000 บาท" class="mr-2">
+                                <label for="budget1">ต่ำกว่า 50,000 บาท</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="budget2" name="budget" value="50,000 – 100,000 บาท" class="mr-2">
+                                <label for="budget2">50,000 – 100,000 บาท</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="budget3" name="budget" value="100,001 – 300,000 บาท" class="mr-2">
+                                <label for="budget3">100,001 – 300,000 บาท</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="budget4" name="budget" value="มากกว่า 300,000 บาท" class="mr-2">
+                                <label for="budget4">มากกว่า 300,000 บาท</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="budget5" name="budget" value="ยังไม่แน่ใจ" class="mr-2">
+                                <label for="budget5">ยังไม่แน่ใจ</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 3: สรุปผลการให้บริการ -->
             <div class="form-section mb-6">
                 <div class="section-header p-4">
                     <h2 class="text-xl font-semibold">ส่วนที่ 3: สรุปผลการให้บริการ</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">ชื่อ-นามสกุลลูกค้า</label>
-                        <input type="text" id="customerName" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <label class="block text-gray-700 font-medium mb-2">ผลการให้คำปรึกษา</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="result1" name="consultResult" value="สอบถาม/ปรึกษา" class="mr-2" required>
+                                <label for="result1">สอบถาม/ปรึกษา</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="result2" name="consultResult" value="ประมาณการเสนอราคา" class="mr-2">
+                                <label for="result2">ประมาณการเสนอราคา</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="result3" name="consultResult" value="ประมาณการและปิดการขาย" class="mr-2">
+                                <label for="result3">ประมาณการและปิดการขาย</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="result4" name="consultResult" value="นัดสำรวจบริการสินค้าพร้อมติดตั้ง" class="mr-2">
+                                <label for="result4">นัดสำรวจบริการสินค้าพร้อมติดตั้ง</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="result5" name="consultResult" value="ปิดขาย" class="mr-2">
+                                <label for="result5">ปิดขาย</label>
+                            </div>
+                        </div>
                     </div>
-                 </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ลูกค้าสนใจซื้อสินค้าอย่างเดียวหรือรับพร้อมงานติดตั้ง</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="purchase1" name="purchaseType" value="ซื้อสินค้าอย่างเดียว" class="mr-2" required>
+                                <label for="purchase1">ซื้อสินค้าอย่างเดียว</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="purchase2" name="purchaseType" value="ซื้อสินค้าพร้อมติดตั้ง" class="mr-2">
+                                <label for="purchase2">ซื้อสินค้าพร้อมติดตั้ง</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">มูลค่ายอดขาย/รายละเอียดเพิ่มเติม</label>
+                        <textarea id="saleDetails" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="กรุณาระบุมูลค่ายอดขายและรายละเอียดเพิ่มเติม"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">ชื่อ-นามสกุลลูกค้า</label>
+                            <input type="text" id="customerName" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">เบอร์โทรลูกค้า</label>
+                            <input type="tel" id="customerPhone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ที่อยู่หน้างานลูกค้า</label>
+                        <textarea id="customerAddress" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Email ลูกค้า</label>
+                        <input type="email" id="customerEmail" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">วันที่สะดวกให้ติดต่อกลับ</label>
+                            <input type="date" id="callbackDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">ช่วงเวลาที่สะดวกให้ติดต่อกลับ</label>
+                            <select id="callbackTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="" disabled selected>กรุณาเลือกช่วงเวลา</option>
+                                <option value="08:00-10:00">08:00 - 10:00 น.</option>
+                                <option value="10:01-12:00">10:01 - 12:00 น.</option>
+                                <option value="12:01-13:00">12:01 - 13:00 น.</option>
+                                <option value="13:01-15:00">13:01 - 15:00 น.</option>
+                                <option value="15:01-18:00">15:01 - 18:00 น.</option>
+                                <option value="18:01-20:00">18:01 - 20:00 น.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 4: Unfulfillment -->
+            <div class="form-section mb-6">
+                <div class="section-header p-4 bg-red-600">
+                    <h2 class="text-xl font-semibold">ส่วนที่ 4: Unfulfillment</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">กลุ่มสินค้าที่สนใจ</label>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="unfulfill1" name="unfulfillProductGroup" value="โครงสร้าง" class="mr-2">
+                                <label for="unfulfill1">โครงสร้าง</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="unfulfill2" name="unfulfillProductGroup" value="หลังคา" class="mr-2">
+                                <label for="unfulfill2">หลังคา</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="unfulfill3" name="unfulfillProductGroup" value="ผนังฝ้า พื้น" class="mr-2">
+                                <label for="unfulfill3">ผนังฝ้า พื้น</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="unfulfill4" name="unfulfillProductGroup" value="อื่นๆ" class="mr-2">
+                                <label for="unfulfill4">อื่นๆ</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">สินค้าที่สนใจ</label>
+                        <input type="text" id="unfulfillProduct" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">มูลค่าโดยประมาณ</label>
+                        <input type="text" id="unfulfillValue" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">รายละเอียดเพิ่มเติม</label>
+                        <textarea id="unfulfillDetails" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                </div>
             </div>
 
             <div class="flex justify-center space-x-4 mt-8 mb-8">
@@ -105,11 +589,67 @@
     </div>
 
     <script>
-     // YOUR JAVASCRIPT CODE SHOULD BE HERE
-     document.addEventListener('submit', function(e) {
-         e.preventDefault();
-         alert('ฟอร์มทำงานถูกต้อง!');
-     });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show roof section when roof installation is selected
+            const roofInstallationCheckbox = document.querySelector('.roof-installation');
+            const roofSection = document.getElementById('roofSection');
+            
+            roofInstallationCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    roofSection.classList.remove('hidden');
+                } else {
+                    roofSection.classList.add('hidden');
+                }
+            });
+
+            // Add service button functionality
+            const addServiceBtn = document.getElementById('addServiceBtn');
+            const serviceContainer = document.getElementById('serviceContainer');
+            
+            addServiceBtn.addEventListener('click', function() {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.className = 'flex items-center flex-wrap';
+                serviceDiv.innerHTML = `
+                    <input type="checkbox" name="service" class="mr-2">
+                    <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" placeholder="ชื่อบริการ">
+                    <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
+                    <button type="button" class="ml-2 text-red-500 hover:text-red-700 remove-service">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                `;
+                
+                // Insert before the add button
+                serviceContainer.insertBefore(serviceDiv, addServiceBtn);
+                
+                // Add event listener to remove button
+                const removeBtn = serviceDiv.querySelector('.remove-service');
+                removeBtn.addEventListener('click', function() {
+                    serviceDiv.remove();
+                });
+            });
+
+            // Form submission
+            const form = document.getElementById('customerForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally send the data to a server
+                alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+            });
+            
+            // Other status field toggle
+            document.getElementById('status3').addEventListener('change', function() {
+                document.getElementById('otherStatus').disabled = !this.checked;
+            });
+            
+            // Other work status field toggle
+            document.getElementById('workStatus6').addEventListener('change', function() {
+                document.getElementById('otherWorkStatus').disabled = !this.checked;
+            });
+        });
     </script>
 </body>
 </html>
