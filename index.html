@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มรับความต้องการลูกค้า</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .form-section {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section-header {
+            background-color: #0f4c81;
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .btn-primary {
+            background-color: #0f4c81;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0d3d68;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h1 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-2">แบบฟอร์มรับความต้องการลูกค้า</h1>
+            <p class="text-center text-gray-600 mb-4">กรุณากรอกข้อมูลให้ครบถ้วนเพื่อการบริการที่รวดเร็วและตรงความต้องการ</p>
+        </div>
+
+        <form id="customerForm">
+            <div class="form-section mb-6">
+                <div class="section-header p-4">
+                    <h2 class="text-xl font-semibold">ข้อมูลพื้นฐาน</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">วันที่</label>
+                            <input type="date" id="date" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">สาขาที่รับบริการ</label>
+                            <select id="branch" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="" disabled selected>กรุณาเลือกสาขา</option>
+                                <option value="กระทุ่มแบน">โกบอลเฮ้าส์ สาขากระทุ่มแบน</option>
+                                <option value="ปทุมธานี">โกบอลเฮ้าส์ สาขาปทุมธานี</option>
+                                <option value="ศาลายา">โกบอลเฮ้าส์ สาขาศาลายา</option>
+                                <option value="บางนา">ไทวัสดุ สาขาบางนา</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ชื่อพนักงานที่รับข้อมูล</label>
+                        <select id="staff" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="" disabled selected>กรุณาเลือกพนักงาน</option>
+                            <option value="ธงชัย ขันอาษา">นาย ธงชัย ขันอาษา</option>
+                            <option value="สุรชัย แชเปีย">นาย สุรชัย แชเปีย</option>
+                            <option value="อานนท์ ศรีต๊ะวรรณ์">นาย อานนท์ ศรีต๊ะวรรณ์</option>
+                            <option value="บุญเสริม สิงห์คำ">นาย บุญเสริม สิงห์คำ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section mb-6">
+                <div class="section-header p-4">
+                    <h2 class="text-xl font-semibold">ส่วนที่ 3: สรุปผลการให้บริการ</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">ชื่อ-นามสกุลลูกค้า</label>
+                        <input type="text" id="customerName" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="flex justify-center space-x-4 mt-8 mb-8">
+                <button type="submit" class="btn-primary px-8 py-3 rounded-lg font-medium text-lg">บันทึกข้อมูล</button>
+                <button type="reset" class="btn-secondary px-8 py-3 rounded-lg font-medium text-lg">ล้างข้อมูล</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+     // YOUR JAVASCRIPT CODE SHOULD BE HERE
+     document.addEventListener('submit', function(e) {
+         e.preventDefault();
+         alert('ฟอร์มทำงานถูกต้อง!');
+     });
+    </script>
+</body>
+</html>
