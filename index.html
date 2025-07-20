@@ -586,68 +586,163 @@
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show roof section when roof installation is selected
-            const roofInstallationCheckbox = document.querySelector('.roof-installation');
-            const roofSection = document.getElementById('roofSection');
-            
-            roofInstallationCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    roofSection.classList.remove('hidden');
-                } else {
-                    roofSection.classList.add('hidden');
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // URL ที่ได้จากการ Deploy Google Apps Script
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEVoGHM0pYjuObBSDsE6pmy8Qvg9fN4cFw8X61lfyLES7vJH4Gxff0hPi_TKODatxT/exec'; // ❗❗ วาง URL ของคุณที่นี่ ❗❗
+
+        const form = document.getElementById('customerForm');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+
+        // --- ฟังก์ชัน Helper สำหรับดึงข้อมูล ---
+        const getRadioValue = (name) => {
+            const element = form.querySelector(`input[name="${name}"]:checked`);
+            return element ? element.value : '';
+        };
+
+        const getServicesValue = () => {
+            const services = [];
+            // ดึงข้อมูลจากส่วนบริการที่สนใจ (ทั้งแบบมีมาให้และแบบเพิ่มเอง)
+            document.querySelectorAll('#serviceContainer .flex').forEach(div => {
+                const checkbox = div.querySelector('input[type="checkbox"]');
+                if (checkbox && checkbox.checked) {
+                    let serviceText = checkbox.value || div.querySelector('input[type="text"]').value;
+                    const brandInput = div.querySelector('input[type="text"][placeholder*="ยี่ห้อ"]');
+                    if (brandInput && brandInput.value) {
+                        serviceText += ` (ยี่ห้อ: ${brandInput.value})`;
+                    }
+                    services.push(serviceText);
                 }
             });
+            return services.join(', ');
+        };
 
-            // Add service button functionality
-            const addServiceBtn = document.getElementById('addServiceBtn');
-            const serviceContainer = document.getElementById('serviceContainer');
-            
-            addServiceBtn.addEventListener('click', function() {
-                const serviceDiv = document.createElement('div');
-                serviceDiv.className = 'flex items-center flex-wrap';
-                serviceDiv.innerHTML = `
-                    <input type="checkbox" name="service" class="mr-2">
-                    <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" placeholder="ชื่อบริการ">
-                    <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ">
-                    <button type="button" class="ml-2 text-red-500 hover:text-red-700 remove-service">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                `;
-                
-                // Insert before the add button
-                serviceContainer.insertBefore(serviceDiv, addServiceBtn);
-                
-                // Add event listener to remove button
-                const removeBtn = serviceDiv.querySelector('.remove-service');
-                removeBtn.addEventListener('click', function() {
-                    serviceDiv.remove();
-                });
-            });
+        const getRoofTypeValue = () => {
+            const radio = form.querySelector('input[name="roofType"]:checked');
+            if (!radio) return '';
+            if (radio.value === 'อื่นๆ') {
+                return `อื่นๆ: ${radio.parentElement.querySelector('input[type="text"]').value}`;
+            }
+            const modelInput = radio.parentElement.querySelector('input[type="text"]');
+            return modelInput ? `${radio.value} (รุ่น: ${modelInput.value})` : radio.value;
+        };
 
-            // Form submission
-            const form = document.getElementById('customerForm');
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Here you would normally send the data to a server
-                alert('บันทึกข้อมูลเรียบร้อยแล้ว');
-            });
-            
-            // Other status field toggle
-            document.getElementById('status3').addEventListener('change', function() {
-                document.getElementById('otherStatus').disabled = !this.checked;
-            });
-            
-            // Other work status field toggle
-            document.getElementById('workStatus6').addEventListener('change', function() {
-                document.getElementById('otherWorkStatus').disabled = !this.checked;
+        const getRoofAccValue = () => {
+            const radio = form.querySelector('input[name="roofAccessories"]:checked');
+            if (!radio) return '';
+            if (radio.value === 'อื่นๆ') {
+                return `อื่นๆ: ${radio.parentElement.querySelector('input[type="text"]').value}`;
+            }
+            const modelInput = radio.parentElement.querySelector('input[type="text"]');
+            return modelInput ? `${radio.value} (รุ่น: ${modelInput.value})` : radio.value;
+        };
+        
+        // --- การทำงานของฟอร์ม (Event Listeners) ---
+        
+        // แสดง/ซ่อน ส่วนของงานหลังคา
+        const roofInstallationCheckbox = document.getElementById('service5');
+        const roofSection = document.getElementById('roofSection');
+        roofInstallationCheckbox.addEventListener('change', function() {
+            roofSection.classList.toggle('hidden', !this.checked);
+        });
+
+        // เปิด/ปิด ช่อง "อื่นๆ"
+        document.querySelectorAll('input[name="customerStatus"], input[name="workStatus"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const otherInputId = radio.name === 'customerStatus' ? 'otherStatus' : 'otherWorkStatus';
+                const otherInput = document.getElementById(otherInputId);
+                if (otherInput) {
+                    otherInput.disabled = (getRadioValue(radio.name) !== 'อื่นๆ');
+                }
             });
         });
-    </script>
+
+        // ปุ่มเพิ่มบริการ
+        document.getElementById('addServiceBtn').addEventListener('click', function() {
+            const serviceDiv = document.createElement('div');
+            serviceDiv.className = 'flex items-center flex-wrap mt-2';
+            serviceDiv.innerHTML = `
+                <input type="checkbox" name="service_dynamic" class="mr-2" checked>
+                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" placeholder="ชื่อบริการ">
+                <input type="text" class="px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="โปรดระบุยี่ห้อ (ถ้ามี)">
+                <button type="button" class="ml-2 text-red-500 hover:text-red-700 remove-service">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            `;
+            this.before(serviceDiv);
+            serviceDiv.querySelector('.remove-service').addEventListener('click', () => serviceDiv.remove());
+        });
+
+        // --- การส่งข้อมูล (Form Submission) ---
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // เปลี่ยนข้อความปุ่มเพื่อบอกสถานะ
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'กำลังบันทึก...';
+            
+            // รวบรวมข้อมูลทั้งหมดลงใน Object
+            const formData = {
+                date: document.getElementById('date').value,
+                branch: document.getElementById('branch').value,
+                staff: document.getElementById('staff').value,
+                customerStatus: getRadioValue('customerStatus') === 'อื่นๆ' ? document.getElementById('otherStatus').value : getRadioValue('customerStatus'),
+                customerAge: getRadioValue('customerAge'),
+                visitTime: getRadioValue('visitTime'),
+                visitDay: getRadioValue('visitDay'),
+                workStatus: getRadioValue('workStatus') === 'อื่นๆ' ? document.getElementById('otherWorkStatus').value : getRadioValue('workStatus'),
+                houseType: getRadioValue('houseType'),
+                houseFloors: getRadioValue('houseFloors'),
+                interestedServices: getServicesValue(),
+                roofServiceType: roofInstallationCheckbox.checked ? getRadioValue('roofServiceType') : '',
+                roofType: roofInstallationCheckbox.checked ? getRoofTypeValue() : '',
+                roofAccessories: roofInstallationCheckbox.checked ? getRoofAccValue() : '',
+                roofStructure: roofInstallationCheckbox.checked ? getRadioValue('roofStructure') : '',
+                budget: roofInstallationCheckbox.checked ? getRadioValue('budget') : '',
+                consultResult: getRadioValue('consultResult'),
+                purchaseType: getRadioValue('purchaseType'),
+                saleDetails: document.getElementById('saleDetails').value,
+                customerName: document.getElementById('customerName').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerAddress: document.getElementById('customerAddress').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                callbackDate: document.getElementById('callbackDate').value,
+                callbackTime: document.getElementById('callbackTime').value,
+                unfulfillProductGroup: getRadioValue('unfulfillProductGroup'),
+                unfulfillProduct: document.getElementById('unfulfillProduct').value,
+                unfulfillValue: document.getElementById('unfulfillValue').value,
+                unfulfillDetails: document.getElementById('unfulfillDetails').value,
+            };
+
+            // ส่งข้อมูลไปที่ Google Apps Script
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // สำคัญมาก
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                alert('บันทึกข้อมูลเรียบร้อยแล้ว!');
+                form.reset(); // ล้างฟอร์ม
+                roofSection.classList.add('hidden'); // ซ่อนส่วนหลังคาอีกครั้ง
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการบันทึก: ' + error.message);
+            })
+            .finally(() => {
+                // คืนค่าปุ่มกลับเป็นปกติ
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            });
+        });
+    });
+</script>
 </body>
 </html>
